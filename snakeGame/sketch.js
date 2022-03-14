@@ -2,6 +2,7 @@ var scl = 20;
 let song;
 var s;
 var f;
+var fps = 10;
 
 function preload() {
   appl = loadSound('rupee.mp3');
@@ -10,7 +11,6 @@ function preload() {
 
 function setup() {
   createCanvas(500, 500);
-  frameRate(7);
   noStroke(0);
   s = new snake();
   f = new food();
@@ -25,12 +25,13 @@ function food() {
     this.number++;
     var cols = floor(width/scl);
     var rows = floor(height/scl);
-    this.vector = createVector(floor(random(cols)), floor(random(rows)));
+    this.vector = createVector(floor(random(1, cols-1)), floor(random(1, rows-1)));
     this.vector.mult(scl);
   }
 }
 
 function draw() {
+  frameRate(fps);
   background(0);
   s.update();
   s.show();
@@ -42,6 +43,7 @@ function draw() {
   s.death();
 
   fill(floor(random(255)), floor(random(255)), floor(random(255)));
+  fill(255, 0, 0);
   rect(f.vector.x, f.vector.y, scl);
 }
 
