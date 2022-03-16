@@ -9,11 +9,11 @@ function snake() {
     this.eat = function(pos) {
       var d = dist(this.x, this.y, pos.x, pos.y);
       if (d < 1) {
-        fps += 5;
+        fpsIncrease(0.42);
         this.total++;
+        musicVel(0.01);
         appl.play();
         document.getElementById('length').innerHTML = this.total + 1;
-        document.getElementById('fps').innerHTML = fps;
         return true
       } else {
         return false
@@ -30,8 +30,8 @@ function snake() {
         var snakeNode = this.tail[i];
         var distance = dist(this.x, this.y, snakeNode.x, snakeNode.y)
         if (distance < 1) {
-            fps = 10;
-            boo.play()
+          musicVel(-1);
+          fpsIncrease(-1);
           this.total = 0;
           this.tail = [];
         }

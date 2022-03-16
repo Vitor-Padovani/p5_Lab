@@ -1,12 +1,11 @@
 var scl = 20;
-let song;
-var s;
-var f;
-var fps = 10;
+let mking;
+let playbackRate = 1;
+var fps = 7;
 
 function preload() {
   appl = loadSound('rupee.mp3');
-  boo = loadSound('boo.mp3');
+  mking = loadSound('mking.mp3');
 }
 
 function setup() {
@@ -15,6 +14,29 @@ function setup() {
   s = new snake();
   f = new food();
   f.pick_location();
+  mking.loop();
+}
+
+function fpsIncrease(value) {
+  if (value > 0) {
+    fps += value;
+  } else {
+    fps = 7;
+  }
+  fps = constrain(fps, 7, 24)
+  document.getElementById('fps').innerHTML = fps;
+}
+
+function musicVel(value) {
+  if (value > 0) {
+    playbackRate += value;
+  } else {
+    playbackRate = 1;
+  }
+
+  playbackRate = constrain(playbackRate, 1, 2)
+  mking.rate(playbackRate);
+  document.getElementById('musicRate').innerHTML = playbackRate;
 }
 
 function food() {
@@ -43,18 +65,18 @@ function draw() {
   s.death();
 
   fill(floor(random(255)), floor(random(255)), floor(random(255)));
-  fill(255, 0, 0);
+  // fill(255, 0, 0);
   rect(f.vector.x, f.vector.y, scl);
 }
 
 function key_pressed() {
-  if (keyCode == UP_ARROW) {
+  if (((keyCode == UP_ARROW) | (keyCode == 87)) & (s.y_speed < 1)) {
     s.dir(0, -1);
-  } else if (keyCode == RIGHT_ARROW) {
+  } else if (((keyCode == RIGHT_ARROW) | (keyCode == 68)) & (s.x_speed > -1)) {
     s.dir(1, 0);
-  } else if (keyCode == DOWN_ARROW) {
+  } else if (((keyCode == DOWN_ARROW) | (keyCode == 83)) & (s.y_speed > -1)) {
     s.dir(0, 1);
-  } else if (keyCode == LEFT_ARROW) {
+  } else if (((keyCode == LEFT_ARROW) | (keyCode == 65)) & (s.x_speed < 1)) {
     s.dir(-1, 0);
   }
 }
