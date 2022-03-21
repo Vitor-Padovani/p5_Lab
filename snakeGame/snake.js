@@ -11,7 +11,7 @@ function snake() {
       if (d < 1) {
         fpsIncrease(0.42);
         this.total++;
-        musicVel(0.01);
+        musicVel(0.025);
         appl.play();
         document.getElementById('length').innerHTML = this.total + 1;
         return true

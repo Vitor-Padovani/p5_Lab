@@ -5,7 +5,7 @@ var fps = 7;
 
 function preload() {
   appl = loadSound('rupee.mp3');
-  mking = loadSound('mking.mp3');
+  mking = loadSound('mkingRev.mp3');
 }
 
 function setup() {
