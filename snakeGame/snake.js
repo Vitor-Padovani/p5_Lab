@@ -9,9 +9,9 @@ function snake() {
     this.eat = function(pos) {
       var d = dist(this.x, this.y, pos.x, pos.y);
       if (d < 1) {
-        fpsIncrease(0.42);
+        fpsIncrease(0.3);
         this.total++;
-        musicVel(0.025);
+        musicVel(0.02);
         appl.play();
         document.getElementById('length').innerHTML = this.total + 1;
         return true

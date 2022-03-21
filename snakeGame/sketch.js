@@ -4,7 +4,7 @@ let playbackRate = 1;
 var fps = 7;
 
 function preload() {
-  appl = loadSound('rupee.mp3');
+  appl = loadSound('food.mp3');
   mking = loadSound('mkingRev.mp3');
 }
 
@@ -23,7 +23,7 @@ function fpsIncrease(value) {
   } else {
     fps = 7;
   }
-  fps = constrain(fps, 7, 24)
+  fps = constrain(fps, 7, 21)
   document.getElementById('fps').innerHTML = fps;
 }
 
@@ -47,6 +47,7 @@ function food() {
     this.number++;
     var cols = floor(width/scl);
     var rows = floor(height/scl);
+
     this.vector = createVector(floor(random(1, cols-1)), floor(random(1, rows-1)));
     this.vector.mult(scl);
   }
@@ -79,4 +80,8 @@ function key_pressed() {
   } else if (((keyCode == LEFT_ARROW) | (keyCode == 65)) & (s.x_speed < 1)) {
     s.dir(-1, 0);
   }
+}
+
+function mousePressed() {
+  s.total++;
 }
